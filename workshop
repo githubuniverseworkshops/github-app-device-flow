@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require "net/http"
+require "json"
+require "uri"
+
+def help
+  puts "usage: workshop <login|create-issue|help>"
+end
+
+CLIENT_ID = ENV.fetch("CLIENT_ID")
+
+def login
+  # Step 1
+  entry_uri = URI("https://github.com/login/device/code")
+  entry_params = URI.encode_www_form("client_id" => CLIENT_ID)
+  headers = {"Accept" => "application/json"}
+
+  http_result = Net::HTTP.post(entry_uri, entry_params, headers)
+
+  response = case http_result
+  when Net::HTTPOK
+    JSON.parse(http_result.body)
+  else
+    puts http_result
+    puts http_result.body
+    exit 1
+  end
+
+  # Step 2
+  puts "Please visit: #{response["verification_uri"]}"
+  puts "and enter code: #{response["user_code"]}"
+end
+
+case ARGV[0]
+when "help"
+  help
+when "login"
+  login
+else
+  help
+end
