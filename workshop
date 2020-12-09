@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+def help
+  puts "usage: workshop <login|create-issue|help>"
+end
+
+case ARGV[0]
+when "help"
+  help
+else
+  help
+end
