@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "usage: script/diff-checkpoint <checkpoint number>"
+  exit 1
+fi
+
+reference="$1"
+
+if [[ "$reference" != *"checkpoint-"* ]]; then
+  reference="checkpoint-$1"
+fi
+
+if [[ $(git remote) != *"universe"* ]]; then
+  git remote add universe https://github.com/githubuniverseworkshops/github-app-device-flow.git
+  git fetch universe -q
+fi
+
+git add workshop
+git diff --staged "universe/$reference" -- workshop
+git reset HEAD workshop >/dev/null
