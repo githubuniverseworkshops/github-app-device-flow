@@ -21,4 +21,4 @@
 - [Intro to GitHub Apps](https://docs.github.com/developers/apps/about-apps)
 - [GitHub docs for Device Flow](https://docs.github.com/developers/apps/authorizing-oauth-apps#device-flow)
 - [GitHub docs for the Issues API](https://docs.github.com/en/free-pro-team@latest/rest/reference/issues#create-an-issue)
-- [Our presentation slides](coming_soon)
+- [Our presentation slides](https://github.com/githubuniverseworkshops/github-app-device-flow/blob/main/universe-2020-apps-workshop-slides.pdf)
